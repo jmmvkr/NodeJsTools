@@ -2,7 +2,19 @@
 
 targ='/usr/bin'
 
-# [NOTE] deploy as /usr/local/sbin/ws
+#-
+#-[usage]
+#-	ws start
+#-	ws stop
+#-	ws list
+#-	ws env
+#-	ws ln
+#-
+
+usage()
+{
+	cat `which ws` | grep '#-' | grep -v grep | sed 's/#-//g'
+}
 
 
 case "$1" in
@@ -24,4 +36,8 @@ ln)
 		echo "sudo ln -s $(which $b) $targ/$b"
 	done
 	;;
+*)
+	usage
+	;;
 esac
+
